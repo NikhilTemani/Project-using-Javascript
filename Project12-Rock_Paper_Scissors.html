@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+      
+    <h2>Computer Choice: <span id="computer-choice"></span></h2>
+    <h2>My Choice: <span id="my-choice"></span></h2>
+    <h2>Result: <span id="result"></span></h2>
+
+    <button id="Rock" class="button">Rock</button>
+    <button id="Paper" class="button">Paper</button>
+    <button id="Scissors" class="button">Scissors</button>
+
+    <script>
+        const computerChoiceDisplay = document.getElementById("computer-choice");
+        const myChoiceDisplay = document.getElementById("my-choice");
+        const resultDisplay = document.getElementById("result");
+        const possibleChoices = document.querySelectorAll("button");
+        let myChoice;
+        let computerChoice;
+        let result;
+
+        possibleChoices.forEach(possibleChoices => possibleChoices.addEventListener('click', (e) => {
+            myChoice = e.target.id;
+            myChoiceDisplay.innerHTML = myChoice;
+            generateComputerChoice();
+            getResult();
+        }))
+
+        function generateComputerChoice(){
+            const randomNumber = Math.floor(Math.random() * 3) + 1;
+            
+            if(randomNumber === 1){
+                computerChoice = "Rock";
+            }
+
+            if(randomNumber === 2){
+                computerChoice = "Paper";
+            }
+
+            if(randomNumber === 3){
+                computerChoice = "Scissors";
+            }
+
+            computerChoiceDisplay.innerHTML = computerChoice;
+        }
+
+        function getResult(){
+            if(computerChoice === myChoice){
+                result = "It's a draw!";
+            }
+
+            if(computerChoice === 'Rock' && myChoice === 'Paper'){
+                result = "You Win!";
+            }
+
+            if(computerChoice === 'Rock' && myChoice === 'Scissors'){
+                result = "You Lose!";
+            }
+
+            if(computerChoice === 'Paper' && myChoice === 'Rock'){
+                result = "You Lose!";
+            }
+
+            if(computerChoice === 'Paper' && myChoice === 'Scissors'){
+                result = "You Win!";
+            }
+
+            if(computerChoice === 'Scissors' && myChoice === 'Paper'){
+                result = "You Lose!";
+            }
+
+            if(computerChoice === 'Scissors' && myChoice === 'Rock'){
+                result = "You Win!";
+            }    
+
+            resultDisplay.innerHTML = result;
+        }
+        
+
+    </script>
+
+</body>
+</html>
